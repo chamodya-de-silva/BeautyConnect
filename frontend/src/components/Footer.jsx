@@ -13,7 +13,7 @@ const Footer = () => {
                     {/* Column 1: Brand & About */}
                     <div className="lg:col-span-1">
                         <span className="text-3xl font-extrabold tracking-tight text-white font-serif italic mb-6 block">
-                            Beauty<span className="text-[--color-brand-purple]">Connect</span>
+                            Beauty<span className="text-[#F880A8]">Connect</span>
                         </span>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
                             Elevating Sri Lanka's beauty industry. We connect clients with top-tier freelance beauticians and salons for seamless, reliable, and premium grooming experiences.
@@ -34,12 +34,12 @@ const Footer = () => {
                     <div>
                         <h4 className="text-white font-bold mb-6 font-serif">Quick Links</h4>
                         <ul className="space-y-3 text-sm font-light text-gray-400">
-                            <li><Link to="/services" className="hover:text-[--color-brand-pink] transition-colors">Find a Service</Link></li>
-                            <li><Link to="/login" className="hover:text-[--color-brand-pink] transition-colors">Log In</Link></li>
-                            <li><Link to="/register" className="hover:text-[--color-brand-pink] transition-colors">Join as Professional</Link></li>
-                            <li><Link to="/testimonials" className="hover:text-[--color-brand-pink] transition-colors">Testimonials</Link></li>
-                            <li><a href="#about" className="hover:text-[--color-brand-pink] transition-colors">About Us</a></li>
-                            <li><a href="#contact" className="hover:text-[--color-brand-pink] transition-colors">Contact Support</a></li>
+                            <li><Link to="/services" className="hover:text-[#9F5AD5] transition-colors">Find a Service</Link></li>
+                            <li><Link to="/login" className="hover:text-[#9F5AD5] transition-colors">Log In</Link></li>
+                            <li><Link to="/professionals" className="hover:text-[#9F5AD5] transition-colors">Join as Professional</Link></li>
+                            <li><Link to="/testimonials" className="hover:text-[#9F5AD5] transition-colors">Testimonials</Link></li>
+                            <li><a href="#about" className="hover:text-[#9F5AD5] transition-colors">About Us</a></li>
+                            <li><a href="#contact" className="hover:text-[#9F5AD5] transition-colors">Contact Support</a></li>
                         </ul>
                     </div>
 
@@ -47,11 +47,11 @@ const Footer = () => {
                     <div>
                         <h4 className="text-white font-bold mb-6 font-serif">Top Services</h4>
                         <ul className="space-y-3 text-sm font-light text-gray-400">
-                            <li><a href="#" className="hover:text-[--color-brand-purple] transition-colors">Bridal Makeup</a></li>
-                            <li><a href="#" className="hover:text-[--color-brand-purple] transition-colors">Hair Styling</a></li>
-                            <li><a href="#" className="hover:text-[--color-brand-purple] transition-colors">Nail Art</a></li>
-                            <li><a href="#" className="hover:text-[--color-brand-purple] transition-colors">Spa & Massage</a></li>
-                            <li><a href="#" className="hover:text-[--color-brand-purple] transition-colors">Skincare Treatments</a></li>
+                            <li><a href="#" className="hover:text-[#9F5AD5] transition-colors">Bridal Makeup</a></li>
+                            <li><a href="#" className="hover:text-[#9F5AD5] transition-colors">Hair Styling</a></li>
+                            <li><a href="#" className="hover:text-[#9F5AD5] transition-colors">Nail Art</a></li>
+                            <li><a href="#" className="hover:text-[#9F5AD5] transition-colors">Spa & Massage</a></li>
+                            <li><a href="#" className="hover:text-[#9F5AD5] transition-colors">Skincare Treatments</a></li>
                         </ul>
                     </div>
 
@@ -69,7 +69,7 @@ const Footer = () => {
                             />
                             <button
                                 type="button"
-                                className="bg-[--color-brand-purple] hover:bg-[--color-brand-purple-dark] text-white font-medium py-2.5 rounded-lg transition-colors text-sm w-full"
+                                className="bg-white border-2 border-[#9F5AD5] text-[#9F5AD5] font-bold py-2.5 rounded-lg hover:bg-gray-50 transition-colors text-sm w-full"
                             >
                                 Subscribe Now
                             </button>

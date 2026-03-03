@@ -4,6 +4,8 @@ import Register from './pages/Register';
 import DiscoverServices from './pages/DiscoverServices';
 import ForProfessionals from './pages/ForProfessionals';
 import Testimonials from './pages/Testimonials';
+import Booking from './pages/Booking';
+import Pricing from './pages/Pricing';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -39,11 +41,11 @@ function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-5">
-                <Link to="/search" className="bg-[--color-brand-purple] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[--color-brand-purple-dark] transition-all shadow-lg hover:shadow-2xl hover:shadow-[--color-brand-purple]/30 transform hover:-translate-y-1 flex items-center justify-center">
+                <Link to="/booking" className="bg-white text-[#9F5AD5] border-2 border-[#9F5AD5] px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-50 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center animate-pulse-purple">
                   Book an Appointment
-                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  <svg className="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </Link>
-                <Link to="/pro/register" className="glass text-gray-900 border border-gray-200 px-8 py-4 rounded-full font-semibold text-lg hover:border-[--color-brand-purple] hover:bg-white transition-all shadow-sm flex items-center justify-center">
+                <Link to="/professionals" className="glass text-[#9F5AD5] border border-[#9F5AD5] px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all shadow-sm flex items-center justify-center">
                   Join as Professional
                 </Link>
               </div>
@@ -157,6 +159,8 @@ function App() {
         <Route path="/services" element={<DiscoverServices />} />
         <Route path="/professionals" element={<ForProfessionals />} />
         <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/pricing" element={<Pricing />} />
       </Routes>
     </Router>
   );

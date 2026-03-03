@@ -31,7 +31,7 @@ const DiscoverServices = () => {
                             <div className="text-5xl mb-6">{service.icon}</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
                             <p className="text-gray-600 font-light leading-relaxed mb-6">{service.description}</p>
-                            <button className="text-[--color-brand-purple-dark] font-bold hover:underline">Explore More →</button>
+                            <button className="text-[#9F5AD5] font-bold hover:underline">Explore More →</button>
                         </div>
                     ))}
                 </div>

@@ -17,12 +17,12 @@ const ForProfessionals = () => {
                             Join Sri Lanka's fastest-growing beauty community. Manage appointments, showcase your work, and connect with more clients effortlessly.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-5">
-                            <Link to="/register" className="bg-gray-900 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-800 transition-all shadow-lg text-center">
+                            <Link to="/register" className="bg-white border-2 border-[#9F5AD5] text-[#9F5AD5] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-all shadow-lg text-center">
                                 Get Started for Free
                             </Link>
-                            <button className="glass border border-gray-200 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white transition-all text-center">
+                            <Link to="/pricing" className="glass border border-[#9F5AD5] text-[#9F5AD5] px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all text-center">
                                 View Pricing
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="mt-16 lg:mt-0">

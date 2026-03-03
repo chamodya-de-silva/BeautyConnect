@@ -16,7 +16,7 @@ const Login = () => {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center justify-center space-x-2 mb-6">
             <span className="text-3xl font-extrabold tracking-tight text-gray-900 font-serif italic">
-              Beauty<span className="text-[--color-brand-purple-dark]">Connect</span>
+              Beauty<span className="text-[#F880A8]">Connect</span>
             </span>
           </Link>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
@@ -27,20 +27,20 @@ const Login = () => {
           <div className="space-y-4">
             <div className="relative group">
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address</label>
-              <input 
+              <input
                 id="email"
-                type="email" 
-                placeholder="you@example.com" 
+                type="email"
+                placeholder="you@example.com"
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] focus:border-transparent outline-none transition-all duration-300"
               />
             </div>
-            
+
             <div className="relative group">
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">Password</label>
-              <input 
+              <input
                 id="password"
-                type="password" 
-                placeholder="••••••••" 
+                type="password"
+                placeholder="••••••••"
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] focus:border-transparent outline-none transition-all duration-300"
               />
             </div>
@@ -51,14 +51,14 @@ const Login = () => {
               <input type="checkbox" className="form-checkbox text-[--color-brand-purple] h-4 w-4 rounded border-gray-300" />
               <span className="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
-            <a href="#" className="text-sm font-medium text-[--color-brand-purple-dark] hover:text-[--color-brand-purple] transition-colors">
+            <a href="#" className="text-sm font-medium text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors">
               Forgot your password?
             </a>
           </div>
 
-          <button 
-            type="button" 
-            className="w-full bg-[--color-brand-purple] hover:bg-[--color-brand-purple-dark] text-white py-3.5 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/30 transition-all duration-300 transform hover:-translate-y-0.5"
+          <button
+            type="button"
+            className="w-full bg-white border-2 border-[#9F5AD5] text-[#9F5AD5] py-3.5 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[#9F5AD5]/20 transition-all duration-300 transform hover:-translate-y-0.5"
           >
             Sign In
           </button>
@@ -67,7 +67,7 @@ const Login = () => {
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
-            <Link to="/register" className="font-semibold text-[--color-brand-purple-dark] hover:text-[--color-brand-purple] transition-colors">
+            <Link to="/register" className="font-semibold text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors">
               Sign up now
             </Link>
           </p>

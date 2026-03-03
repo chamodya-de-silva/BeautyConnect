@@ -9,7 +9,7 @@ const Navbar = () => {
                     <Link to="/" className="flex-shrink-0 flex items-center space-x-3">
                         <img src="/logo.png" alt="Beauty Connect Logo" className="h-12 w-auto object-contain" />
                         <span className="text-3xl font-extrabold tracking-tight text-gray-900 font-serif italic">
-                            Beauty<span className="text-[--color-brand-purple-dark]">Connect</span>
+                            Beauty<span className="text-[#F880A8]">Connect</span>
                         </span>
                     </Link>
                     {/* Links */}
@@ -20,8 +20,8 @@ const Navbar = () => {
                     </div>
                     {/* CTA */}
                     <div className="flex items-center space-x-6">
-                        <Link to="/login" className="text-gray-700 font-medium hover:text-gray-900 transition-colors">Log In</Link>
-                        <Link to="/register" className="bg-gray-900 hover:bg-gray-800 text-white px-7 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-xl transform hover:-translate-y-0.5">
+                        <Link to="/login" className="text-[#9F5AD5] font-bold hover:text-[--color-brand-purple-dark] transition-colors">Log In</Link>
+                        <Link to="/register" className="bg-white border border-[#9F5AD5] text-[#9F5AD5] px-7 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
                             Sign Up
                         </Link>
                     </div>

@@ -4,9 +4,9 @@
 @theme {
   --font-sans: 'Outfit', sans-serif;
   --font-serif: 'Playfair Display', serif;
+  --color-brand-purple: #9F5AD5;
+  --color-brand-purple-dark: #8b46c2;
   --color-brand-pink: #F1D0DB;
-  --color-brand-purple: #C7B1D8;
-  --color-brand-purple-dark: #a98ec2;
   --color-brand-pink-dark: #d8aabf;
 }
 
@@ -57,6 +57,25 @@ body {
 }
 
 /* Smooth scrolling */
+
+@keyframes pulse-purple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(169, 142, 194, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(169, 142, 194, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(169, 142, 194, 0);
+  }
+}
+
+.animate-pulse-purple {
+  animation: pulse-purple 2s infinite;
+}
+
 html {
   scroll-behavior: smooth;
 }

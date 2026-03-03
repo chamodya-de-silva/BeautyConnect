@@ -16,7 +16,7 @@ const Register = () => {
                 <div className="text-center mb-10">
                     <Link to="/" className="inline-flex items-center justify-center space-x-2 mb-6 hover:scale-105 transition-transform duration-300">
                         <span className="text-3xl font-extrabold tracking-tight text-gray-900 font-serif italic drop-shadow-sm">
-                            Beauty<span className="text-[--color-brand-pink-dark]">Connect</span>
+                            Beauty<span className="text-[#F880A8]">Connect</span>
                         </span>
                     </Link>
                     <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">Create an Account</h2>
@@ -84,13 +84,13 @@ const Register = () => {
                             className="form-checkbox text-[--color-brand-pink-dark] mt-1 h-4 w-4 rounded border-gray-300 cursor-pointer"
                         />
                         <label htmlFor="terms" className="ml-2 text-sm text-gray-600 block leading-relaxed cursor-pointer">
-                            I agree to the <a href="#" className="font-semibold text-[--color-brand-pink-dark] hover:text-[--color-brand-pink] transition-colors">Terms of Service</a> and <a href="#" className="font-semibold text-[--color-brand-pink-dark] hover:text-[--color-brand-pink] transition-colors">Privacy Policy</a>
+                            I agree to the <a href="#" className="font-semibold text-[#9F5AD5] hover:text-[#8b46c2] transition-colors">Terms of Service</a> and <a href="#" className="font-semibold text-[#9F5AD5] hover:text-[#8b46c2] transition-colors">Privacy Policy</a>
                         </label>
                     </div>
 
                     <button
                         type="button"
-                        className="w-full mt-6 bg-[--color-brand-pink] hover:bg-[--color-brand-pink-dark] text-gray-900 py-3.5 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-pink]/30 transition-all duration-300 transform hover:-translate-y-0.5"
+                        className="w-full mt-6 bg-white border-2 border-[#9F5AD5] text-[#9F5AD5] py-3.5 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[#9F5AD5]/20 transition-all duration-300 transform hover:-translate-y-0.5"
                     >
                         Create Account
                     </button>
@@ -99,7 +99,7 @@ const Register = () => {
                 <div className="mt-8 pt-6 border-t border-gray-200/50 text-center">
                     <p className="text-sm text-gray-600 font-medium">
                         Already have an account?{' '}
-                        <Link to="/login" className="font-bold text-[--color-brand-pink-dark] hover:text-[--color-brand-pink] transition-colors hover:underline underline-offset-4 pointer-events-auto">
+                        <Link to="/login" className="font-bold text-[#9F5AD5] hover:text-[#8b46c2] transition-colors hover:underline underline-offset-4 pointer-events-auto">
                             Log in here
                         </Link>
                     </p>
