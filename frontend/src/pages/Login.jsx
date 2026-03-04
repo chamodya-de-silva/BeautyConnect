@@ -1,78 +1,94 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Login = () => {
+  const roles = [
+    {
+      id: 'client',
+      title: 'Client',
+      description: 'I want to book beauty services',
+      icon: '👤',
+      path: '/login/client',
+      color: 'bg-[--color-brand-purple]',
+      hoverColor: 'hover:shadow-[--color-brand-purple]/20'
+    },
+    {
+      id: 'beautician',
+      title: 'Freelance Beautician',
+      description: 'I want to manage my solo practice',
+      icon: '✨',
+      path: '/login/beautician',
+      color: 'bg-[--color-brand-pink]',
+      hoverColor: 'hover:shadow-[--color-brand-pink]/20'
+    },
+    {
+      id: 'salon',
+      title: 'Salon Owner',
+      description: 'I want to manage my salon and staff',
+      icon: '🏛️',
+      path: '/login/salon',
+      color: 'bg-gray-900',
+      hoverColor: 'hover:shadow-gray-900/20'
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-purple] selection:text-white flex items-center justify-center relative">
-      {/* Dynamic Background Blurs */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[--color-brand-pink] mix-blend-multiply filter blur-[100px] opacity-40 animate-blob"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[40%] h-[60%] rounded-full bg-[--color-brand-purple] mix-blend-multiply filter blur-[120px] opacity-40 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-[60%] h-[50%] rounded-full bg-[#e8dbf0] mix-blend-multiply filter blur-[100px] opacity-50 animate-blob animation-delay-4000"></div>
-      </div>
+    <div className="min-h-screen bg-[#fafafa]">
+      <Navbar />
 
-      {/* Main Glass Container */}
-      <div className="relative z-10 w-full max-w-lg p-8 sm:p-12 glass rounded-3xl shadow-2xl border border-white/50 backdrop-blur-xl">
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center justify-center space-x-2 mb-6">
-            <span className="text-3xl font-extrabold tracking-tight text-gray-900 font-serif italic">
-              Beauty<span className="text-[#F880A8]">Connect</span>
-            </span>
-          </Link>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
-          <p className="text-gray-500 font-light">Log in to manage your beauty appointments</p>
+      <div className="pt-32 pb-20 flex items-center justify-center relative px-4">
+        {/* Dynamic Background Blurs */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[10%] left-[10%] w-[40%] h-[40%] rounded-full bg-[--color-brand-pink] mix-blend-multiply filter blur-[100px] opacity-20"></div>
+          <div className="absolute bottom-[10%] right-[10%] w-[40%] h-[40%] rounded-full bg-[--color-brand-purple] mix-blend-multiply filter blur-[100px] opacity-20"></div>
         </div>
 
-        <form className="space-y-6">
-          <div className="space-y-4">
-            <div className="relative group">
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] focus:border-transparent outline-none transition-all duration-300"
-              />
-            </div>
-
-            <div className="relative group">
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] focus:border-transparent outline-none transition-all duration-300"
-              />
-            </div>
+        <div className="relative z-10 w-full max-w-4xl">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 font-serif">Welcome Back</h1>
+            <p className="text-xl text-gray-600 font-light">Please select your account type to continue</p>
           </div>
 
-          <div className="flex items-center justify-between">
-            <label className="flex items-center">
-              <input type="checkbox" className="form-checkbox text-[--color-brand-purple] h-4 w-4 rounded border-gray-300" />
-              <span className="ml-2 text-sm text-gray-600">Remember me</span>
-            </label>
-            <a href="#" className="text-sm font-medium text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors">
-              Forgot your password?
-            </a>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {roles.map((role) => (
+              <Link
+                key={role.id}
+                to={role.path}
+                className={`group relative bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${role.hoverColor} flex flex-col items-center text-center`}
+              >
+                <div className={`w-20 h-20 ${role.color} rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-lg transform group-hover:scale-110 transition-transform duration-500`}>
+                  {role.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[--color-brand-purple-dark] transition-colors">
+                  {role.title}
+                </h3>
+                <p className="text-gray-500 font-light leading-relaxed mb-6">
+                  {role.description}
+                </p>
+                <div className="mt-auto inline-flex items-center text-[--color-brand-purple-dark] font-bold">
+                  Login Now
+                  <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
           </div>
 
-          <button
-            type="button"
-            className="w-full bg-white border-2 border-[#9F5AD5] text-[#9F5AD5] py-3.5 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[#9F5AD5]/20 transition-all duration-300 transform hover:-translate-y-0.5"
-          >
-            Sign In
-          </button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/register" className="font-semibold text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors">
-              Sign up now
-            </Link>
-          </p>
+          <div className="mt-16 text-center">
+            <p className="text-gray-600">
+              Don't have an account? {' '}
+              <Link to="/register" className="font-bold text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors underline decoration-2 underline-offset-4">
+                Sign up here
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

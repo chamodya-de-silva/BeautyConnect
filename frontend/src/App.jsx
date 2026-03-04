@@ -1,6 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import LoginClient from './pages/auth/LoginClient';
+import LoginBeautician from './pages/auth/LoginBeautician';
+import LoginSalonOwner from './pages/auth/LoginSalonOwner';
+import RegisterClient from './pages/auth/RegisterClient';
+import RegisterBeautician from './pages/auth/RegisterBeautician';
+import RegisterSalonOwner from './pages/auth/RegisterSalonOwner';
 import DiscoverServices from './pages/DiscoverServices';
 import ForProfessionals from './pages/ForProfessionals';
 import Testimonials from './pages/Testimonials';
@@ -155,7 +161,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/client" element={<LoginClient />} />
+        <Route path="/login/beautician" element={<LoginBeautician />} />
+        <Route path="/login/salon" element={<LoginSalonOwner />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/register/client" element={<RegisterClient />} />
+        <Route path="/register/beautician" element={<RegisterBeautician />} />
+        <Route path="/register/salon" element={<RegisterSalonOwner />} />
         <Route path="/services" element={<DiscoverServices />} />
         <Route path="/professionals" element={<ForProfessionals />} />
         <Route path="/testimonials" element={<Testimonials />} />
@@ -165,5 +177,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
