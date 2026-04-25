@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginBeautician = () => {
+    const navigate = useNavigate();
     return (
         <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-pink] selection:text-white flex items-center justify-center relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -59,6 +60,7 @@ const LoginBeautician = () => {
 
                     <button
                         type="button"
+                        onClick={() => navigate('/dashboard/beautician')}
                         className="w-full bg-[--color-brand-pink] text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-pink]/20 transition-all duration-300 transform hover:-translate-y-0.5"
                     >
                         Sign In as Professional

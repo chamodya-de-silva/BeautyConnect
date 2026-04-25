@@ -14,6 +14,9 @@ import Booking from './pages/Booking';
 import Pricing from './pages/Pricing';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ClientDashboard from './pages/dashboards/ClientDashboard';
+import BeauticianDashboard from './pages/dashboards/BeauticianDashboard';
+import SalonDashboard from './pages/dashboards/SalonDashboard';
 
 function Home() {
   return (
@@ -173,6 +176,9 @@ function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/dashboard/client" element={<ClientDashboard />} />
+        <Route path="/dashboard/beautician" element={<BeauticianDashboard />} />
+        <Route path="/dashboard/salon" element={<SalonDashboard />} />
       </Routes>
     </Router>
   );
