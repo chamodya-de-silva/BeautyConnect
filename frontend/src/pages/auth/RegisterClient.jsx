@@ -1,7 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterClient = () => {
+    const navigate = useNavigate();
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    name: `${firstName} ${lastName}`.trim(), 
+                    email, 
+                    password, 
+                    role: 'client' 
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Save token and navigate
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                navigate('/dashboard/client');
+            } else {
+                setError(data.message || 'Registration failed');
+            }
+        } catch (err) {
+            setError('Server error. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
     return (
         <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-purple] selection:text-white flex items-center justify-center relative py-12">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -23,22 +66,33 @@ const RegisterClient = () => {
                     <p className="text-gray-500 font-light">Join the community and start booking</p>
                 </div>
 
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleRegister}>
+                    {error && (
+                        <div className="p-3 bg-red-100 text-red-700 rounded-xl text-sm text-center">
+                            {error}
+                        </div>
+                    )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 ml-1">First Name</label>
                             <input
                                 type="text"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                                 placeholder="Jane"
                                 className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] outline-none transition-all"
+                                required
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 ml-1">Last Name</label>
                             <input
                                 type="text"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                                 placeholder="Doe"
                                 className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] outline-none transition-all"
+                                required
                             />
                         </div>
                     </div>
@@ -47,8 +101,11 @@ const RegisterClient = () => {
                         <label className="text-sm font-medium text-gray-700 ml-1">Email Address</label>
                         <input
                             type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="jane@example.com"
                             className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] outline-none transition-all"
+                            required
                         />
                     </div>
 
@@ -56,8 +113,11 @@ const RegisterClient = () => {
                         <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
                         <input
                             type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••••"
                             className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-purple] outline-none transition-all"
+                            required
                         />
                     </div>
 
@@ -69,10 +129,11 @@ const RegisterClient = () => {
                     </div>
 
                     <button
-                        type="button"
-                        className="w-full bg-[--color-brand-purple] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/20 transition-all transform hover:-translate-y-0.5 mt-4"
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full bg-[--color-brand-purple] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/20 transition-all transform hover:-translate-y-0.5 mt-4 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                        Create Client Account
+                        {loading ? 'Creating...' : 'Create Client Account'}
                     </button>
                 </form>
 
