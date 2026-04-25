@@ -1,6 +1,38 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const checkAuth = () => {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                try {
+                    setUser(JSON.parse(storedUser));
+                } catch(e) {}
+            } else {
+                setUser(null);
+            }
+        };
+        
+        checkAuth();
+        window.addEventListener('storage', checkAuth);
+        
+        return () => {
+            window.removeEventListener('storage', checkAuth);
+        };
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser(null);
+        navigate('/');
+        // Force reload to update other components if needed
+        window.location.reload();
+    };
     return (
         <nav className="fixed w-full z-50 glass border-b border-white/40 shadow-sm transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,10 +52,23 @@ const Navbar = () => {
                     </div>
                     {/* CTA */}
                     <div className="flex items-center space-x-6">
-                        <Link to="/login" className="text-[#9F5AD5] font-bold hover:text-[--color-brand-purple-dark] transition-colors">Log In</Link>
-                        <Link to="/register" className="bg-white border border-[#9F5AD5] text-[#9F5AD5] px-7 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
-                            Sign Up
-                        </Link>
+                        {user ? (
+                            <>
+                                <Link to={`/dashboard/${user.role === 'salon_owner' ? 'salon' : user.role}`} className="text-gray-700 font-medium hover:text-[--color-brand-purple-dark] transition-colors">
+                                    Hi, <span className="font-bold text-[#9F5AD5]">{user.name.split(' ')[0]}</span>
+                                </Link>
+                                <button onClick={handleLogout} className="bg-white border-2 border-[#F880A8] text-[#F880A8] px-6 py-2 rounded-full font-bold transition-all shadow-sm hover:shadow-md hover:bg-[#F880A8] hover:text-white transform hover:-translate-y-0.5">
+                                    Log Out
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login" className="text-[#9F5AD5] font-bold hover:text-[--color-brand-purple-dark] transition-colors">Log In</Link>
+                                <Link to="/register" className="bg-white border border-[#9F5AD5] text-[#9F5AD5] px-7 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                                    Sign Up
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

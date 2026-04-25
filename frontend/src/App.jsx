@@ -17,6 +17,10 @@ import Footer from './components/Footer';
 import ClientDashboard from './pages/dashboards/ClientDashboard';
 import BeauticianDashboard from './pages/dashboards/BeauticianDashboard';
 import SalonDashboard from './pages/dashboards/SalonDashboard';
+import ClientHistory from './pages/dashboards/ClientHistory';
+import ClientSettings from './pages/dashboards/ClientSettings';
+import ClientFavorites from './pages/dashboards/ClientFavorites';
+import ClientRewards from './pages/dashboards/ClientRewards';
 
 function Home() {
   return (
@@ -177,6 +181,10 @@ function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/dashboard/client" element={<ClientDashboard />} />
+        <Route path="/dashboard/client/history" element={<ClientHistory />} />
+        <Route path="/dashboard/client/settings" element={<ClientSettings />} />
+        <Route path="/dashboard/client/favorites" element={<ClientFavorites />} />
+        <Route path="/dashboard/client/rewards" element={<ClientRewards />} />
         <Route path="/dashboard/beautician" element={<BeauticianDashboard />} />
         <Route path="/dashboard/salon" element={<SalonDashboard />} />
       </Routes>
