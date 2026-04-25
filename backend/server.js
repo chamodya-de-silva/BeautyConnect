@@ -20,6 +20,8 @@ app.get('/api', (req, res) => {
     res.json({ message: 'Welcome to Beauty Connect API' });
 });
 
+app.use('/api/auth', require('./routes/authRoutes'));
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
