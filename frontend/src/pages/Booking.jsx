@@ -1,9 +1,69 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Booking = () => {
-    const categories = ['Makeup', 'Hair', 'Nails', 'Skincare', 'Spa', 'Bridal'];
-    const locations = ['Colombo', 'Kandy', 'Galle', 'Negombo', 'Jaffna'];
+    const navigate = useNavigate();
+    const routerLocation = useLocation();
+    const [service, setService] = useState('');
+    const [location, setLocation] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [status, setStatus] = useState(null);
+
+    const categories = ['Makeup', 'Hair Styling', 'Nail Art', 'Skincare', 'Spa & Massage', 'Men\'s Grooming', 'Bridal Makeup'];
+    const salons = [
+        { name: 'Luxe Nail Spa', location: 'Colombo' },
+        { name: 'Glow Up Studio', location: 'Kandy' },
+        { name: 'Serenity Wellness', location: 'Galle' },
+        { name: 'Sarah\'s Beauty Studio', location: 'Negombo' },
+        { name: 'Luxe Salon', location: 'Colombo' }
+    ];
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login/client');
+            return;
+        }
+
+        const params = new URLSearchParams(routerLocation.search);
+        const prefillService = params.get('service');
+        const prefillSalon = params.get('salon');
+
+        if (prefillService) setService(prefillService);
+        if (prefillSalon) setLocation(prefillSalon);
+    }, [navigate, routerLocation.search]);
+
+    const handleBooking = async () => {
+        if (!service || !location || !date || !time) {
+            alert('Please fill out all fields');
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:5000/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                // location field is now storing the salon name for the backend logic
+                body: JSON.stringify({ service, location, date, time })
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setTimeout(() => navigate('/dashboard/client'), 2000);
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            setStatus('error');
+        }
+    };
 
     return (
         <div className="min-h-screen bg-[#fafafa]">
@@ -15,40 +75,58 @@ const Booking = () => {
                         Book an <span className="text-[--color-brand-purple-dark]">Appointment</span>
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
-                        Find and book the best beauty professionals near you in seconds.
+                        Select a salon, pick your service, and confirm your time.
                     </p>
                 </div>
 
                 {/* Search Bar / Filters */}
-                <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 mb-16 max-w-5xl mx-auto -mt-8 relative z-10">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 mb-16 max-w-5xl mx-auto relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Select Salon</label>
+                            <select value={location} onChange={(e) => setLocation(e.target.value)} className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-[--color-brand-purple] transition-all">
+                                <option value="">Choose a salon...</option>
+                                {salons.map(salon => <option key={salon.name} value={salon.name}>{salon.name} ({salon.location})</option>)}
+                            </select>
+                        </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Service Type</label>
-                            <select className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-[--color-brand-purple] transition-all">
-                                <option>What are you looking for?</option>
-                                {categories.map(cat => <option key={cat}>{cat}</option>)}
+                            <select value={service} onChange={(e) => setService(e.target.value)} className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-[--color-brand-purple] transition-all">
+                                <option value="">What are you looking for?</option>
+                                {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Location</label>
-                            <select className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-[--color-brand-purple] transition-all">
-                                <option>Where in Sri Lanka?</option>
-                                {locations.map(loc => <option key={loc}>{loc}</option>)}
-                            </select>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Date</label>
+                            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-[--color-brand-purple] transition-all" />
                         </div>
-                        <div className="flex items-end">
-                            <button className="w-full bg-white border-2 border-[#9F5AD5] text-[#9F5AD5] font-bold py-4 rounded-2xl hover:bg-gray-50 transition-all shadow-lg hover:shadow-[#9F5AD5]/20 transform hover:-translate-y-0.5">
-                                Search Professionals
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Time</label>
+                            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-[--color-brand-purple] transition-all" />
+                        </div>
+                        <div className="flex items-end md:col-span-2 mt-4">
+                            <button onClick={handleBooking} className="w-full bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all">
+                                Confirm Appointment
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Placeholder for results */}
-                <div className="text-center py-20 border-2 border-dashed border-gray-100 rounded-[3rem]">
-                    <div className="text-6xl mb-6">🔍</div>
-                    <h3 className="text-2xl font-bold text-gray-400">Select a category to see available professionals</h3>
-                </div>
+                {/* Status Messages */}
+                {status === 'success' && (
+                    <div className="text-center py-10 bg-green-50 border border-green-200 rounded-[2rem] max-w-5xl mx-auto">
+                        <div className="text-4xl mb-4">🎉</div>
+                        <h3 className="text-2xl font-bold text-green-700">Booking Confirmed!</h3>
+                        <p className="text-green-600 mt-2">Redirecting to your dashboard...</p>
+                    </div>
+                )}
+                {status === 'error' && (
+                    <div className="text-center py-10 bg-red-50 border border-red-200 rounded-[2rem] max-w-5xl mx-auto">
+                        <div className="text-4xl mb-4">❌</div>
+                        <h3 className="text-2xl font-bold text-red-700">Booking Failed</h3>
+                        <p className="text-red-600 mt-2">Please try again.</p>
+                    </div>
+                )}
             </div>
 
             <Footer />

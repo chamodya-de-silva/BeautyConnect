@@ -12,6 +12,7 @@ import ForProfessionals from './pages/ForProfessionals';
 import Testimonials from './pages/Testimonials';
 import Booking from './pages/Booking';
 import Pricing from './pages/Pricing';
+import ServiceSalons from './pages/ServiceSalons';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ClientDashboard from './pages/dashboards/ClientDashboard';
@@ -176,6 +177,7 @@ function App() {
         <Route path="/register/beautician" element={<RegisterBeautician />} />
         <Route path="/register/salon" element={<RegisterSalonOwner />} />
         <Route path="/services" element={<DiscoverServices />} />
+        <Route path="/services/:id" element={<ServiceSalons />} />
         <Route path="/professionals" element={<ForProfessionals />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/booking" element={<Booking />} />

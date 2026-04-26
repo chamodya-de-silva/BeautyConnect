@@ -55,7 +55,7 @@ const ClientSettings = () => {
                         </div>
 
                         <div className="pt-6">
-                            <button type="button" className="w-full bg-[--color-brand-purple] text-white py-3 rounded-xl font-bold shadow-md hover:bg-[--color-brand-purple-dark] transition-colors">
+                            <button type="button" className="w-full bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white py-4 rounded-2xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all">
                                 Save Changes
                             </button>
                         </div>
