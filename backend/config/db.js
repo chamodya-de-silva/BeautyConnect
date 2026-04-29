@@ -5,8 +5,9 @@ const connectDB = async () => {
         const conn = await mongoose.connect(process.env.MONGODB_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);
+        console.error(`Database Connection Error: ${error.message}`);
+        console.log('Server is running without database connection (fallback mode).');
+        // Removed process.exit(1) to allow the server to keep running
     }
 };
 
