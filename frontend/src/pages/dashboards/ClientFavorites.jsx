@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import ClientSubNavbar from '../../components/ClientSubNavbar';
 
 const ClientFavorites = () => {
     const navigate = useNavigate();
@@ -9,7 +10,8 @@ const ClientFavorites = () => {
     return (
         <div className="min-h-screen bg-[#fafafa]">
             <Navbar />
-            <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <ClientSubNavbar />
+            <div className="pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                 <div className="flex items-center space-x-4 mb-8">
                     <button onClick={() => navigate(-1)} className="text-gray-500 hover:text-gray-900 transition-colors">
                         ← Back

@@ -101,7 +101,7 @@ const LoginClient = () => {
                             <input type="checkbox" className="form-checkbox text-[--color-brand-purple] h-4 w-4 rounded border-gray-300" />
                             <span className="ml-2 text-sm text-gray-600">Remember me</span>
                         </label>
-                        <Link to="#" className="text-sm font-medium text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors">
+                        <Link to="/forgot-password" className="text-sm font-medium text-[#9F5AD5] hover:text-[--color-brand-purple-dark] transition-colors">
                             Forgot password?
                         </Link>
                     </div>

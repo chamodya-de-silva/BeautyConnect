@@ -46,7 +46,8 @@ const Navbar = () => {
                     </Link>
                     {/* Links */}
                     <div className="hidden md:flex space-x-10">
-                        <Link to="/services" className="text-gray-700 hover:text-[--color-brand-purple-dark] px-3 py-2 font-medium transition-colors">Discover Services</Link>
+                        <Link to="/salons" className="text-gray-700 hover:text-[--color-brand-purple-dark] px-3 py-2 font-medium transition-colors">Salons</Link>
+                        <Link to="/services" className="text-gray-700 hover:text-[--color-brand-purple-dark] px-3 py-2 font-medium transition-colors">Services</Link>
                         <Link to="/professionals" className="text-gray-700 hover:text-[--color-brand-purple-dark] px-3 py-2 font-medium transition-colors">For Professionals</Link>
                         <Link to="/testimonials" className="text-gray-700 hover:text-[--color-brand-purple-dark] px-3 py-2 font-medium transition-colors">Testimonials</Link>
                     </div>

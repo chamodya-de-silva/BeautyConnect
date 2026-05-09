@@ -52,7 +52,7 @@ const LoginSalonOwner = () => {
                             <input type="checkbox" className="form-checkbox text-gray-900 h-4 w-4 rounded border-gray-300" />
                             <span className="ml-2 text-sm text-gray-600">Remember me</span>
                         </label>
-                        <Link to="#" className="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">
+                        <Link to="/forgot-password" className="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors">
                             Forgot password?
                         </Link>
                     </div>

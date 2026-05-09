@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import ClientSubNavbar from '../../components/ClientSubNavbar';
 
 const ClientDashboard = () => {
     const [user, setUser] = useState(null);
@@ -10,28 +11,38 @@ const ClientDashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchBookings = async () => {
+        const fetchDashboardData = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate('/login/client');
+                return;
+            }
+
             try {
-                const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:5000/api/bookings', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setBookings(data.filter(b => b.status === 'upcoming'));
+                const [profileRes, bookingsRes] = await Promise.all([
+                    fetch('http://localhost:5000/api/users/profile', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    }),
+                    fetch('http://localhost:5000/api/bookings', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    })
+                ]);
+
+                if (profileRes.ok) {
+                    const profileData = await profileRes.json();
+                    setUser(profileData);
+                }
+
+                if (bookingsRes.ok) {
+                    const bookingsData = await bookingsRes.json();
+                    setBookings(bookingsData.filter(b => b.status === 'upcoming'));
                 }
             } catch (err) {
-                console.error('Failed to fetch bookings', err);
+                console.error('Failed to fetch dashboard data', err);
             }
         };
 
-        const storedUser = localStorage.getItem('user');
-        if (!storedUser) {
-            navigate('/login/client');
-        } else {
-            setUser(JSON.parse(storedUser));
-            fetchBookings();
-        }
+        fetchDashboardData();
     }, [navigate]);
 
     const handleCancel = async (bookingId) => {
@@ -86,16 +97,25 @@ const ClientDashboard = () => {
         }
     };
 
-    if (!user) return null; // or a loading spinner
+    if (!user) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+
+    const favorites = user.favorites || [];
+    const loyaltyPoints = user.loyaltyPoints || 0;
 
     return (
         <div className="min-h-screen bg-[#fafafa]">
             <Navbar />
-            
-            <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-                <div className="mb-12">
-                    <h1 className="text-4xl font-extrabold text-gray-900 font-serif mb-2">Welcome, <span className="text-[--color-brand-purple-dark]">{user.name.split(' ')[0]}</span>!</h1>
-                    <p className="text-gray-600 font-light text-lg">Here's your beauty schedule for the week.</p>
+            <ClientSubNavbar />
+
+            <div className="pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+                <div className="mb-12 flex items-center gap-6">
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
+                        <img src={user.profilePicture || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop'} alt="Profile" className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                        <h1 className="text-4xl font-extrabold text-gray-900 font-serif mb-2">Welcome, <span className="text-[--color-brand-purple-dark]">{user.name.split(' ')[0]}</span>!</h1>
+                        <p className="text-gray-600 font-light text-lg">Here's your beauty schedule for the week.</p>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -114,8 +134,8 @@ const ClientDashboard = () => {
                                 <div className="space-y-4">
                                     {bookings.map(booking => (
                                         <div key={booking._id} className="flex flex-col sm:flex-row items-center sm:items-start gap-6 bg-[#fafafa] p-6 rounded-3xl border border-gray-100">
-                                            <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-sm flex-shrink-0">
-                                                <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=200&h=200&fit=crop" alt="Service" className="w-full h-full object-cover" />
+                                            <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-sm flex-shrink-0 bg-gray-200">
+                                                <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=200&h=200&fit=crop" alt="Service" className="w-full h-full object-cover mix-blend-multiply" />
                                             </div>
                                             <div className="flex-1 text-center sm:text-left">
                                                 <h3 className="text-xl font-bold text-gray-900 mb-1">{booking.service}</h3>
@@ -143,21 +163,28 @@ const ClientDashboard = () => {
                         <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-2xl font-bold text-gray-900">Your Favorites</h2>
-                                <button onClick={() => navigate('/dashboard/client/favorites')} className="bg-[#f4eaf9] text-[#9F5AD5] px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#9F5AD5] hover:text-white transition-colors">View All</button>
+                                <button onClick={() => navigate('/services')} className="bg-[#f4eaf9] text-[#9F5AD5] px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#9F5AD5] hover:text-white transition-colors">Find More</button>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {[1, 2].map((i) => (
-                                    <div key={i} onClick={() => navigate('/dashboard/client/favorites')} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-[#fafafa] transition-colors border border-transparent hover:border-gray-100 cursor-pointer">
-                                        <div className="w-16 h-16 rounded-xl bg-gray-200 overflow-hidden">
-                                            <img src={`https://images.unsplash.com/photo-${i === 1 ? '1522337360788-8b13fee7a3af' : '1560066984-138dadb4c035'}?w=100&h=100&fit=crop`} alt="Favorite" className="w-full h-full object-cover" />
+                            
+                            {favorites.length === 0 ? (
+                                <div className="text-center py-6 bg-gray-50 rounded-2xl border border-gray-100">
+                                    <p className="text-gray-500">You haven't saved any favorites yet.</p>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {favorites.slice(0,4).map((fav) => (
+                                        <div key={fav._id} onClick={() => navigate(`/booking?salon=${encodeURIComponent(fav.name)}`)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-[#fafafa] transition-colors border border-transparent hover:border-gray-100 cursor-pointer">
+                                            <div className="w-16 h-16 rounded-xl bg-gray-200 overflow-hidden">
+                                                <img src={fav.profilePicture || 'https://images.unsplash.com/photo-1522337360788-8b13fee7a3af'} alt={fav.name} className="w-full h-full object-cover" />
+                                            </div>
+                                            <div>
+                                                <h4 className="font-bold text-gray-900">{fav.name}</h4>
+                                                <p className="text-xs text-gray-500 mt-1">⭐ {fav.rating || '4.9'} ({fav.reviews || '100+'} reviews)</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h4 className="font-bold text-gray-900">{i === 1 ? 'Luxe Nail Spa' : 'Glow Up Studio'}</h4>
-                                            <p className="text-xs text-gray-500 mt-1">⭐ 4.9 (120+ reviews)</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -168,11 +195,15 @@ const ClientDashboard = () => {
                             <div className="absolute top-[-10%] right-[-10%] w-32 h-32 rounded-full bg-white opacity-10 blur-xl"></div>
                             <h3 className="text-xl font-bold mb-6">Beauty Rewards</h3>
                             <div className="flex items-end gap-2 mb-2">
-                                <span className="text-5xl font-extrabold font-serif">450</span>
+                                <span className="text-5xl font-extrabold font-serif">{loyaltyPoints}</span>
                                 <span className="text-white/80 pb-1">Points</span>
                             </div>
-                            <p className="text-sm text-white/90 mb-6 font-light">You are 50 points away from a free Deluxe Spa Manicure!</p>
-                            <button onClick={() => navigate('/dashboard/client/rewards')} className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-white py-3 rounded-xl font-bold transition-colors">
+                            <p className="text-sm text-white/90 mb-6 font-light">
+                                {loyaltyPoints < 500 
+                                    ? `You are ${500 - loyaltyPoints} points away from a free Deluxe Spa Manicure!` 
+                                    : "You have enough points to redeem a reward!"}
+                            </p>
+                            <button className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-white py-3 rounded-xl font-bold transition-colors">
                                 Redeem Points
                             </button>
                         </div>
@@ -185,13 +216,13 @@ const ClientDashboard = () => {
                                     <span className="font-bold text-gray-800 group-hover:text-[--color-brand-purple-dark]">Book New Service</span>
                                     <span className="text-[--color-brand-purple] bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-[--color-brand-purple] group-hover:text-white transition-colors">→</span>
                                 </button>
-                                <button onClick={() => navigate('/dashboard/client/history')} className="w-full flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[#fafafa] to-[#f9eaf0] border border-[#f5d5e0] hover:border-[--color-brand-pink] hover:shadow-md transition-all text-left group">
-                                    <span className="font-bold text-gray-800 group-hover:text-[--color-brand-pink-dark]">My History</span>
+                                <button onClick={() => navigate('/services')} className="w-full flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[#fafafa] to-[#f9eaf0] border border-[#f5d5e0] hover:border-[--color-brand-pink] hover:shadow-md transition-all text-left group">
+                                    <span className="font-bold text-gray-800 group-hover:text-[--color-brand-pink-dark]">Find Salons</span>
                                     <span className="text-[--color-brand-pink-dark] bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-[--color-brand-pink] group-hover:text-white transition-colors">→</span>
                                 </button>
                                 <button onClick={() => navigate('/dashboard/client/settings')} className="w-full flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all text-left group">
                                     <span className="font-bold text-gray-800 group-hover:text-gray-900">Settings</span>
-                                    <span className="text-gray-500 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-gray-800 group-hover:text-white transition-colors">→</span>
+                                    <span className="text-gray-50 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-gray-800 group-hover:text-white transition-colors text-gray-500">→</span>
                                 </button>
                             </div>
                         </div>
@@ -217,12 +248,19 @@ const ClientDashboard = () => {
                             </div>
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">New Time</label>
-                                <input 
-                                    type="time" 
+                                <select 
                                     value={rescheduleModal.time} 
                                     onChange={e => setRescheduleModal({...rescheduleModal, time: e.target.value})} 
                                     className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-3 focus:ring-2 focus:ring-[--color-brand-purple] outline-none"
-                                />
+                                >
+                                    <option value="">Select Time</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="01:00 PM">01:00 PM</option>
+                                    <option value="02:00 PM">02:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                </select>
                             </div>
                         </div>
 

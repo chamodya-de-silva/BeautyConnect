@@ -2,9 +2,10 @@ const Booking = require('../models/Booking');
 
 exports.createBooking = async (req, res) => {
     try {
-        const { service, location, date, time } = req.body;
+        const { professional, service, location, date, time } = req.body;
         const newBooking = new Booking({
             client: req.user.id,
+            professional,
             service,
             location,
             date,
@@ -52,6 +53,32 @@ exports.rescheduleBooking = async (req, res) => {
         booking.status = 'upcoming'; // Just in case it was cancelled
         await booking.save();
         res.json(booking);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.getAvailability = async (req, res) => {
+    try {
+        const { professional, date } = req.query;
+        if (!professional || !date) {
+            return res.status(400).json({ message: 'Professional and date are required' });
+        }
+        
+        // Create safe date range for the entire day to avoid timezone matching issues
+        const startDate = new Date(date);
+        startDate.setUTCHours(0, 0, 0, 0);
+        const endDate = new Date(date);
+        endDate.setUTCHours(23, 59, 59, 999);
+
+        const bookings = await Booking.find({ 
+            professional, 
+            date: { $gte: startDate, $lte: endDate },
+            status: { $ne: 'cancelled' } 
+        });
+        
+        const bookedTimes = bookings.map(b => b.time);
+        res.json({ bookedTimes });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

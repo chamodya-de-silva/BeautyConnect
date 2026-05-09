@@ -7,7 +7,10 @@ import LoginSalonOwner from './pages/auth/LoginSalonOwner';
 import RegisterClient from './pages/auth/RegisterClient';
 import RegisterBeautician from './pages/auth/RegisterBeautician';
 import RegisterSalonOwner from './pages/auth/RegisterSalonOwner';
+import ForgotPassword from './pages/auth/ForgotPassword';
 import DiscoverServices from './pages/DiscoverServices';
+import DiscoverSalons from './pages/DiscoverSalons';
+import ProfessionalProfile from './pages/ProfessionalProfile';
 import ForProfessionals from './pages/ForProfessionals';
 import Testimonials from './pages/Testimonials';
 import Booking from './pages/Booking';
@@ -176,7 +179,10 @@ function App() {
         <Route path="/register/client" element={<RegisterClient />} />
         <Route path="/register/beautician" element={<RegisterBeautician />} />
         <Route path="/register/salon" element={<RegisterSalonOwner />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/services" element={<DiscoverServices />} />
+        <Route path="/salons" element={<DiscoverSalons />} />
+        <Route path="/professional/:id" element={<ProfessionalProfile />} />
         <Route path="/services/:id" element={<ServiceSalons />} />
         <Route path="/professionals" element={<ForProfessionals />} />
         <Route path="/testimonials" element={<Testimonials />} />

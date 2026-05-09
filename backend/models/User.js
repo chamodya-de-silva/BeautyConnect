@@ -18,6 +18,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['client', 'salon_owner', 'beautician'],
         default: 'client'
+    },
+    profilePicture: {
+        type: String,
+        default: ''
+    },
+    phone: {
+        type: String,
+        default: ''
+    },
+    address: {
+        type: String,
+        default: ''
+    },
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    loyaltyPoints: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 
