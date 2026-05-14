@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ClientSubNavbar from '../../components/ClientSubNavbar';
+import { ToastContainer } from '../../components/Toast';
+import useToast from '../../hooks/useToast';
 
 const ClientDashboard = () => {
     const [user, setUser] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [rescheduleModal, setRescheduleModal] = useState({ isOpen: false, bookingId: null, date: '', time: '' });
     const navigate = useNavigate();
+    const { toasts, showToast, removeToast } = useToast();
 
     useEffect(() => {
         const fetchDashboardData = async () => {
@@ -31,6 +34,11 @@ const ClientDashboard = () => {
                 if (profileRes.ok) {
                     const profileData = await profileRes.json();
                     setUser(profileData);
+                } else if (profileRes.status === 401) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    navigate('/login/client');
+                    return;
                 }
 
                 if (bookingsRes.ok) {
@@ -54,10 +62,12 @@ const ClientDashboard = () => {
             });
             if (response.ok) {
                 setBookings(bookings.filter(b => b._id !== bookingId));
-                alert('Booking cancelled successfully.');
+                showToast('Booking cancelled successfully.', 'success');
+            } else {
+                showToast('Failed to cancel booking.', 'error');
             }
         } catch (err) {
-            alert('Failed to cancel booking.');
+            showToast('Failed to cancel booking.', 'error');
         }
     };
 
@@ -90,32 +100,57 @@ const ClientDashboard = () => {
                 const updatedBooking = await response.json();
                 setBookings(bookings.map(b => b._id === rescheduleModal.bookingId ? updatedBooking : b));
                 setRescheduleModal({ isOpen: false, bookingId: null, date: '', time: '' });
-                alert('Booking rescheduled successfully.');
+                showToast('Booking rescheduled successfully!', 'success');
+            } else {
+                showToast('Failed to reschedule booking.', 'error');
             }
         } catch (err) {
-            alert('Failed to reschedule booking.');
+            showToast('Failed to reschedule booking.', 'error');
         }
     };
 
-    if (!user) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    if (!user) return (
+        <div className="min-h-screen flex items-center justify-center bg-[#fafafa]">
+            <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border-4 border-[--color-brand-purple] border-t-transparent rounded-full animate-spin"></div>
+                <p className="text-gray-500 font-medium">Loading your dashboard...</p>
+            </div>
+        </div>
+    );
 
     const favorites = user.favorites || [];
     const loyaltyPoints = user.loyaltyPoints || 0;
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/');
+        window.location.reload();
+    };
 
     return (
         <div className="min-h-screen bg-[#fafafa]">
             <Navbar />
             <ClientSubNavbar />
+            <ToastContainer toasts={toasts} removeToast={removeToast} />
 
             <div className="pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-                <div className="mb-12 flex items-center gap-6">
-                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
-                        <img src={user.profilePicture || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop'} alt="Profile" className="w-full h-full object-cover" />
+                <div className="mb-12 flex items-center justify-between gap-6 flex-wrap">
+                    <div className="flex items-center gap-6">
+                        <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
+                            <img src={user.profilePicture || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop'} alt="Profile" className="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h1 className="text-4xl font-extrabold text-gray-900 font-serif mb-2">Welcome, <span className="text-[--color-brand-purple-dark]">{user.name.split(' ')[0]}</span>!</h1>
+                            <p className="text-gray-600 font-light text-lg">Here's your beauty schedule for the week.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 className="text-4xl font-extrabold text-gray-900 font-serif mb-2">Welcome, <span className="text-[--color-brand-purple-dark]">{user.name.split(' ')[0]}</span>!</h1>
-                        <p className="text-gray-600 font-light text-lg">Here's your beauty schedule for the week.</p>
-                    </div>
+                    <button 
+                        onClick={handleLogout}
+                        className="flex items-center gap-2 text-sm font-bold text-red-500 bg-red-50 hover:bg-red-100 border border-red-200 px-5 py-2.5 rounded-xl transition-all"
+                    >
+                        🚪 Log Out
+                    </button>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">

@@ -57,12 +57,22 @@ function Home() {
                 Connect with Sri Lanka's top freelance beauticians and salons. Book effortlessly, read verified reviews, and experience premium wellness.
               </p>
 
-              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-5">
-                <Link to="/booking" className="bg-white text-[#9F5AD5] border-2 border-[#9F5AD5] px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-50 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center animate-pulse-purple">
-                  Book an Appointment
-                  <svg className="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              <div className="bg-white p-4 rounded-3xl shadow-xl flex flex-col md:flex-row gap-3 mb-10 max-w-2xl mx-auto lg:mx-0 border border-gray-100">
+                <div className="flex-1 flex items-center bg-gray-50 rounded-2xl px-4 py-3">
+                  <span className="text-xl mr-3">🔍</span>
+                  <input type="text" placeholder="What service are you looking for?" className="bg-transparent w-full outline-none font-medium text-gray-800 placeholder-gray-400" />
+                </div>
+                <div className="flex-1 flex items-center bg-gray-50 rounded-2xl px-4 py-3">
+                  <span className="text-xl mr-3">📍</span>
+                  <input type="text" placeholder="Where? (e.g. Colombo)" className="bg-transparent w-full outline-none font-medium text-gray-800 placeholder-gray-400" />
+                </div>
+                <Link to="/salons" className="bg-black text-white px-8 py-3 rounded-2xl font-bold hover:bg-gray-800 transition-all flex items-center justify-center shadow-md">
+                  Search
                 </Link>
-                <Link to="/professionals" className="glass text-[#9F5AD5] border border-[#9F5AD5] px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all shadow-sm flex items-center justify-center">
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                <Link to="/professionals" className="glass text-gray-800 border border-gray-200 px-6 py-3 rounded-full font-bold text-sm hover:bg-white hover:shadow-md transition-all flex items-center justify-center">
                   Join as Professional
                 </Link>
               </div>
@@ -157,6 +167,79 @@ function Home() {
               <h4 className="text-2xl font-bold mb-3">Secure Payments</h4>
               <p className="text-gray-500 group-hover:text-gray-300 leading-relaxed font-light">Enjoy completely secure transactions with integrated local reliable payment gateways for ultimate peace of mind.</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Salons Section */}
+      <div className="py-24 relative z-10 bg-[#fafafa]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-[--color-brand-purple-dark] font-bold tracking-wide uppercase text-sm mb-3">Top Rated</h2>
+              <h3 className="text-4xl font-extrabold text-gray-900 font-serif">Featured Salons</h3>
+            </div>
+            <Link to="/salons" className="hidden sm:block text-gray-900 font-bold hover:underline">View All →</Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { id: 1, name: "Luxe Beauty Lounge", location: "Colombo 03", rating: "4.9", reviews: 124, img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { id: 2, name: "The Glamour Room", location: "Mount Lavinia", rating: "4.8", reviews: 89, img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { id: 3, name: "Glow & Go Studio", location: "Rajagiriya", rating: "4.9", reviews: 215, img: "https://images.unsplash.com/photo-1516975080661-460d3d0f01a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+            ].map(salon => (
+              <Link to={`/professional/${salon.id}`} key={salon.id} className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                <div className="h-48 overflow-hidden relative">
+                  <img src={salon.img} alt={salon.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold flex items-center shadow-sm">
+                    <span className="text-yellow-500 mr-1">★</span> {salon.rating}
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[--color-brand-purple-dark] transition-colors">{salon.name}</h4>
+                  <div className="flex items-center text-gray-500 text-sm mb-4">
+                    <span className="mr-1">📍</span> {salon.location}
+                  </div>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-50">
+                    <span className="text-sm text-gray-500">{salon.reviews} verified reviews</span>
+                    <span className="text-sm font-bold text-gray-900 group-hover:underline">Book Now</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 text-center sm:hidden">
+            <Link to="/salons" className="text-gray-900 font-bold hover:underline">View All Salons →</Link>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
+      <div className="py-24 relative z-10 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-[--color-brand-purple-dark] font-bold tracking-wide uppercase text-sm mb-3">Simple Process</h2>
+            <h3 className="text-4xl font-extrabold text-gray-900 font-serif">How It Works</h3>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-center items-start gap-8 relative">
+            {/* Connecting line for desktop */}
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gray-100 -z-10"></div>
+            
+            {[
+              { step: "1", title: "Discover", desc: "Find top-rated salons and freelance beauticians near you based on verified reviews." },
+              { step: "2", title: "Book", desc: "Select your preferred service, choose a staff member, and pick a convenient time." },
+              { step: "3", title: "Enjoy", desc: "Experience premium beauty services and leave a review for your professional." }
+            ].map((item, i) => (
+              <div key={i} className="flex-1 text-center bg-white">
+                <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center text-2xl font-bold text-gray-900 mx-auto mb-6 border-4 border-white shadow-md relative">
+                  {item.step}
+                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-[--color-brand-purple] opacity-30 animate-[spin_10s_linear_infinite]"></div>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
+                <p className="text-gray-500 leading-relaxed px-4">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

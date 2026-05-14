@@ -12,6 +12,7 @@ const DiscoverSalons = () => {
     const [filters, setFilters] = useState({
         query: '',
         location: '',
+        service: '',
         minRating: 0
     });
 
@@ -34,6 +35,9 @@ const DiscoverSalons = () => {
                 let filteredData = data;
                 if (filters.minRating > 0) {
                     filteredData = filteredData.filter(p => parseFloat(p.rating) >= filters.minRating);
+                }
+                if (filters.service) {
+                    filteredData = filteredData.filter(p => p.services && p.services.includes(filters.service));
                 }
                 
                 setProfessionals(filteredData);
@@ -114,7 +118,25 @@ const DiscoverSalons = () => {
                         <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 lg:sticky lg:top-32 max-h-[80vh] overflow-y-auto custom-scrollbar">
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="font-bold text-xl text-gray-900">Filters</h3>
-                                <button onClick={() => {setFilters({query: '', location: '', minRating: 0});}} className="text-sm text-[--color-brand-purple] hover:underline">Clear All</button>
+                                <button onClick={() => {setFilters({query: '', location: '', service: '', minRating: 0});}} className="text-sm text-[--color-brand-purple] hover:underline">Clear All</button>
+                            </div>
+
+                            <div className="mb-6">
+                                <h4 className="font-semibold text-gray-700 mb-2">Service Type</h4>
+                                <select 
+                                    name="service"
+                                    value={filters.service}
+                                    onChange={handleFilterChange}
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-[--color-brand-purple] transition-all outline-none"
+                                >
+                                    <option value="">All Services</option>
+                                    <option value="Hair Cut">Hair Cut</option>
+                                    <option value="Hair Coloring">Hair Coloring</option>
+                                    <option value="Bridal Makeup">Bridal Makeup</option>
+                                    <option value="Basic Facial">Basic Facial</option>
+                                    <option value="Manicure">Manicure</option>
+                                    <option value="Pedicure">Pedicure</option>
+                                </select>
                             </div>
 
                             <div className="mb-8">

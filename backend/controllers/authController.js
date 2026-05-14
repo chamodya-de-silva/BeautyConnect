@@ -54,36 +54,33 @@ exports.register = async (req, res) => {
 };
 
 // @route   POST /api/auth/login
-// @desc    Login user & get token
+// @desc    Login user & get token (with real password verification)
 exports.login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
 
-        let user;
-        let dbWorks = true;
-        try {
-            user = await User.findOne({ email });
-        } catch (dbError) {
-            console.error('Database connection error during login, bypassing:', dbError.message);
-            dbWorks = false;
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password are required.' });
         }
 
-        if (user && dbWorks) {
-            // We found a user in the database, let's just log them in regardless of password match
-            // to fulfill the "without any issue" requirement for any credentials
-            console.log('User found in DB. Bypassing password check.');
-        } else {
-            // DB is down or user not found, create a mock user to allow login
-            console.log('DB down or user not found. Creating mock user for login bypass.');
-            user = {
-                _id: 'mock_id_' + Date.now(),
-                name: email ? email.split('@')[0] : 'Mock User',
-                email: email || 'mock@example.com',
-                role: role || 'client'
-            };
+        // 1. Find the user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid credentials. No account found with this email.' });
         }
 
-        // Create JWT payload
+        // 2. Check if the role matches (optional but good UX)
+        if (role && user.role !== role) {
+            return res.status(403).json({ message: `This account is registered as a "${user.role}", not a "${role}". Please use the correct login page.` });
+        }
+
+        // 3. Verify password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials. Incorrect password.' });
+        }
+
+        // 4. Create & sign JWT
         const payload = {
             user: {
                 id: user._id,
@@ -91,11 +88,10 @@ exports.login = async (req, res) => {
             }
         };
 
-        // Sign token
         jwt.sign(
             payload,
             process.env.JWT_SECRET || 'your_jwt_secret_key_here',
-            { expiresIn: '1d' },
+            { expiresIn: '7d' },
             (err, token) => {
                 if (err) throw err;
                 res.json({
@@ -110,16 +106,7 @@ exports.login = async (req, res) => {
             }
         );
     } catch (err) {
-        console.error('Deep fallback login error:', err.message);
-        // Ultimate fallback
-        res.json({
-            token: 'fallback_token_' + Date.now(),
-            user: {
-                id: 'fallback_id',
-                name: req.body.email ? req.body.email.split('@')[0] : 'Fallback User',
-                email: req.body.email || 'fallback@example.com',
-                role: req.body.role || 'client'
-            }
-        });
+        console.error('Login error:', err.message);
+        res.status(500).json({ message: 'Server error. Please try again later.' });
     }
 };

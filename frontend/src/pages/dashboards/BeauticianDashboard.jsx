@@ -93,6 +93,20 @@ const BeauticianDashboard = () => {
                                 </button>
                             ))}
                         </nav>
+
+                        <div className="mt-8 pt-8 border-t border-gray-100">
+                            <button 
+                                onClick={() => {
+                                    localStorage.removeItem('token');
+                                    localStorage.removeItem('user');
+                                    window.location.href = '/';
+                                }}
+                                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-sm text-red-500 hover:bg-red-50 font-bold"
+                            >
+                                <span>🚪</span>
+                                Log Out
+                            </button>
+                        </div>
                     </div>
                 </div>
 
