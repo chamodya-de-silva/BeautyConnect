@@ -206,7 +206,7 @@ const Booking = () => {
                                             disabled={isBooked}
                                             className={`py-2 px-2 rounded-lg text-xs font-bold transition-all border ${
                                                 isBooked ? 'bg-gray-100 border-gray-100 text-gray-400 cursor-not-allowed line-through' :
-                                                time === slot ? 'bg-gray-900 border-gray-900 text-white' : 
+                                                time === slot ? 'bg-gray-200 border-gray-900 text-black' : 
                                                 'bg-white border-gray-200 text-gray-600 hover:border-gray-900'
                                             }`}
                                         >
@@ -223,7 +223,7 @@ const Booking = () => {
                         <button 
                             onClick={handleBooking} 
                             disabled={!selectedProfId || !service || !date || !time}
-                            className="w-full bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white font-bold py-5 rounded-2xl text-lg shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                            className="w-full bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black font-bold py-5 rounded-2xl text-lg shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                         >
                             Confirm Appointment
                         </button>

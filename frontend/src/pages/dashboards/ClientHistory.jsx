@@ -54,7 +54,7 @@ const ClientHistory = () => {
                                     <span className="px-3 py-1 bg-[#eafff0] border border-[#a3e5bb] text-green-700 text-xs font-bold rounded-full">Completed</span>
                                     <div className="flex gap-2">
                                         <button onClick={() => handleReviewClick(i)} className="bg-white border border-gray-200 text-gray-700 px-5 py-2 rounded-xl text-sm font-bold shadow-sm hover:bg-gray-50 transition-all">Rate & Review</button>
-                                        <button onClick={() => navigate('/booking')} className="bg-[#f4eaf9] text-[#9F5AD5] px-5 py-2 rounded-xl text-sm font-bold shadow-sm hover:bg-[#9F5AD5] hover:text-white hover:shadow-md transition-all">Book Again</button>
+                                        <button onClick={() => navigate('/booking')} className="bg-[#f4eaf9] text-[#9F5AD5] px-5 py-2 rounded-xl text-sm font-bold shadow-sm hover:bg-[#9F5AD5] hover:text-black hover:shadow-md transition-all">Book Again</button>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@ const ClientHistory = () => {
                             </button>
                             <button 
                                 onClick={submitReview} 
-                                className="flex-1 bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white py-3 rounded-xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all"
+                                className="flex-1 bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black py-3 rounded-xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all"
                             >
                                 Submit Review
                             </button>

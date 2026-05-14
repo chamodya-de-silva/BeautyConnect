@@ -29,7 +29,7 @@ const Register = () => {
             description: 'I want to list my salon and manage my team and services.',
             icon: '🏛️',
             path: '/register/salon',
-            color: 'bg-gray-900',
+            color: 'bg-gray-200',
             hoverColor: 'hover:shadow-gray-900/20'
         }
     ];

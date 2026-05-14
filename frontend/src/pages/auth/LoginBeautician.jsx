@@ -1,10 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const LoginBeautician = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password, role: 'beautician' }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Save token and user details to localStorage
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                
+                // Navigate to dashboard and reload to update navbar state
+                navigate('/dashboard/beautician');
+                window.location.reload();
+            } else {
+                setError(data.message || 'Login failed');
+            }
+        } catch (err) {
+            setError('Server error. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-pink] selection:text-white flex items-center justify-center relative">
+        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-pink] selection:text-black flex items-center justify-center relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[--color-brand-purple] mix-blend-multiply filter blur-[100px] opacity-40 animate-blob"></div>
                 <div className="absolute top-[20%] left-[-10%] w-[40%] h-[60%] rounded-full bg-[--color-brand-pink] mix-blend-multiply filter blur-[120px] opacity-40 animate-blob animation-delay-2000"></div>
@@ -25,15 +64,23 @@ const LoginBeautician = () => {
                     <p className="text-gray-500 font-light">Manage your portfolio and bookings</p>
                 </div>
 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleLogin}>
+                    {error && (
+                        <div className="p-3 bg-red-100 text-red-700 rounded-xl text-sm text-center">
+                            {error}
+                        </div>
+                    )}
                     <div className="space-y-4">
                         <div className="relative group">
                             <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Work Email</label>
                             <input
                                 id="email"
                                 type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="beautician@example.com"
                                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-pink] focus:border-transparent outline-none transition-all duration-300"
+                                required
                             />
                         </div>
 
@@ -42,8 +89,11 @@ const LoginBeautician = () => {
                             <input
                                 id="password"
                                 type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
                                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-[--color-brand-pink] focus:border-transparent outline-none transition-all duration-300"
+                                required
                             />
                         </div>
                     </div>
@@ -59,11 +109,11 @@ const LoginBeautician = () => {
                     </div>
 
                     <button
-                        type="button"
-                        onClick={() => navigate('/dashboard/beautician')}
-                        className="w-full bg-[--color-brand-pink] text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-pink]/20 transition-all duration-300 transform hover:-translate-y-0.5"
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full bg-[--color-brand-pink] text-black py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-pink]/20 transition-all duration-300 transform hover:-translate-y-0.5 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                        Sign In as Professional
+                        {loading ? 'Signing In...' : 'Sign In as Professional'}
                     </button>
                 </form>
 

@@ -128,7 +128,7 @@ const ClientDashboard = () => {
                             {bookings.length === 0 ? (
                                 <div className="text-center py-8 bg-[#fafafa] rounded-3xl border border-gray-100">
                                     <p className="text-gray-500 mb-4">You have no upcoming appointments.</p>
-                                    <button onClick={() => navigate('/booking')} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all">Book Now</button>
+                                    <button onClick={() => navigate('/booking')} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black px-8 py-3 rounded-xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all">Book Now</button>
                                 </div>
                             ) : (
                                 <div className="space-y-4">
@@ -150,7 +150,7 @@ const ClientDashboard = () => {
                                                 </div>
                                             </div>
                                             <div className="flex sm:flex-col gap-3 w-full sm:w-auto mt-4 sm:mt-0">
-                                                <button onClick={() => handleRescheduleClick(booking)} className="flex-1 bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all">Reschedule</button>
+                                                <button onClick={() => handleRescheduleClick(booking)} className="flex-1 bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all">Reschedule</button>
                                                 <button onClick={() => handleCancel(booking._id)} className="flex-1 bg-white border-2 border-red-400 text-red-500 px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm hover:bg-red-50 hover:border-red-500 transition-colors">Cancel</button>
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@ const ClientDashboard = () => {
                         <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-2xl font-bold text-gray-900">Your Favorites</h2>
-                                <button onClick={() => navigate('/services')} className="bg-[#f4eaf9] text-[#9F5AD5] px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#9F5AD5] hover:text-white transition-colors">Find More</button>
+                                <button onClick={() => navigate('/services')} className="bg-[#f4eaf9] text-[#9F5AD5] px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#9F5AD5] hover:text-black transition-colors">Find More</button>
                             </div>
                             
                             {favorites.length === 0 ? (
@@ -191,19 +191,19 @@ const ClientDashboard = () => {
                     {/* Sidebar Area */}
                     <div className="space-y-8">
                         {/* Quick Stats/Info */}
-                        <div className="bg-gradient-to-br from-[--color-brand-purple] to-[#e88aa8] p-8 rounded-[2rem] text-white shadow-lg relative overflow-hidden">
+                        <div className="bg-gradient-to-br from-[--color-brand-purple] to-[#e88aa8] p-8 rounded-[2rem] text-black shadow-lg relative overflow-hidden">
                             <div className="absolute top-[-10%] right-[-10%] w-32 h-32 rounded-full bg-white opacity-10 blur-xl"></div>
                             <h3 className="text-xl font-bold mb-6">Beauty Rewards</h3>
                             <div className="flex items-end gap-2 mb-2">
                                 <span className="text-5xl font-extrabold font-serif">{loyaltyPoints}</span>
-                                <span className="text-white/80 pb-1">Points</span>
+                                <span className="text-black/80 pb-1">Points</span>
                             </div>
-                            <p className="text-sm text-white/90 mb-6 font-light">
+                            <p className="text-sm text-black/90 mb-6 font-light">
                                 {loyaltyPoints < 500 
                                     ? `You are ${500 - loyaltyPoints} points away from a free Deluxe Spa Manicure!` 
                                     : "You have enough points to redeem a reward!"}
                             </p>
-                            <button className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-white py-3 rounded-xl font-bold transition-colors">
+                            <button className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-black py-3 rounded-xl font-bold transition-colors">
                                 Redeem Points
                             </button>
                         </div>
@@ -214,15 +214,15 @@ const ClientDashboard = () => {
                             <div className="space-y-4">
                                 <button onClick={() => navigate('/booking')} className="w-full flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[#fafafa] to-[#f4eaf9] border border-[#e8dbf0] hover:border-[--color-brand-purple] hover:shadow-md transition-all text-left group">
                                     <span className="font-bold text-gray-800 group-hover:text-[--color-brand-purple-dark]">Book New Service</span>
-                                    <span className="text-[--color-brand-purple] bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-[--color-brand-purple] group-hover:text-white transition-colors">→</span>
+                                    <span className="text-[--color-brand-purple] bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-[--color-brand-purple] group-hover:text-black transition-colors">→</span>
                                 </button>
                                 <button onClick={() => navigate('/services')} className="w-full flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[#fafafa] to-[#f9eaf0] border border-[#f5d5e0] hover:border-[--color-brand-pink] hover:shadow-md transition-all text-left group">
                                     <span className="font-bold text-gray-800 group-hover:text-[--color-brand-pink-dark]">Find Salons</span>
-                                    <span className="text-[--color-brand-pink-dark] bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-[--color-brand-pink] group-hover:text-white transition-colors">→</span>
+                                    <span className="text-[--color-brand-pink-dark] bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-[--color-brand-pink] group-hover:text-black transition-colors">→</span>
                                 </button>
                                 <button onClick={() => navigate('/dashboard/client/settings')} className="w-full flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all text-left group">
                                     <span className="font-bold text-gray-800 group-hover:text-gray-900">Settings</span>
-                                    <span className="text-gray-50 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-gray-800 group-hover:text-white transition-colors text-gray-500">→</span>
+                                    <span className="text-gray-50 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm font-bold group-hover:bg-gray-800 group-hover:text-black transition-colors text-gray-500">→</span>
                                 </button>
                             </div>
                         </div>
@@ -273,7 +273,7 @@ const ClientDashboard = () => {
                             </button>
                             <button 
                                 onClick={submitReschedule} 
-                                className="flex-1 bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white py-3 rounded-xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all"
+                                className="flex-1 bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black py-3 rounded-xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all"
                             >
                                 Confirm
                             </button>

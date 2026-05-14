@@ -22,7 +22,7 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-purple] selection:text-white flex items-center justify-center relative">
+        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-purple] selection:text-black flex items-center justify-center relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[--color-brand-pink] mix-blend-multiply filter blur-[100px] opacity-40 animate-blob"></div>
                 <div className="absolute top-[20%] right-[-10%] w-[40%] h-[60%] rounded-full bg-[--color-brand-purple] mix-blend-multiply filter blur-[120px] opacity-40 animate-blob animation-delay-2000"></div>
@@ -47,7 +47,7 @@ const ForgotPassword = () => {
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 mb-2">Check your email</h3>
                         <p className="text-gray-500 mb-8">We've sent a password reset link to <br/> <span className="font-semibold text-gray-800">{email}</span></p>
-                        <Link to="/login" className="w-full inline-block bg-[--color-brand-purple] text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/20 transition-all duration-300">
+                        <Link to="/login" className="w-full inline-block bg-[--color-brand-purple] text-black py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/20 transition-all duration-300">
                             Return to Login
                         </Link>
                     </div>
@@ -75,7 +75,7 @@ const ForgotPassword = () => {
                         <button
                             type="submit"
                             disabled={status === 'loading'}
-                            className={`w-full bg-[--color-brand-purple] text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/20 transition-all duration-300 transform hover:-translate-y-0.5 ${status === 'loading' ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            className={`w-full bg-[--color-brand-purple] text-black py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-purple]/20 transition-all duration-300 transform hover:-translate-y-0.5 ${status === 'loading' ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             {status === 'loading' ? 'Sending Link...' : 'Send Reset Link'}
                         </button>

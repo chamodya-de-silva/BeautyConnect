@@ -106,7 +106,7 @@ const ProfessionalProfile = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                            <button onClick={() => navigate(`/booking?salon=${encodeURIComponent(professional.name)}`)} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg">
+                            <button onClick={() => navigate(`/booking?salon=${encodeURIComponent(professional.name)}`)} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg">
                                 Book Appointment
                             </button>
                             <button onClick={() => setChatModalOpen(true)} className="bg-white border-2 border-[--color-brand-purple] text-[--color-brand-purple-dark] px-8 py-3 rounded-xl font-bold shadow-sm hover:bg-gray-50 transition-all text-lg flex items-center justify-center gap-2">
@@ -243,7 +243,7 @@ const ProfessionalProfile = () => {
                             ) : (
                                 chatHistory.map((msg, idx) => (
                                     <div key={idx} className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                                        <div className={`px-5 py-3 max-w-[80%] rounded-2xl ${msg.sender === 'user' ? 'bg-[--color-brand-purple] text-white rounded-tr-none' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm'}`}>
+                                        <div className={`px-5 py-3 max-w-[80%] rounded-2xl ${msg.sender === 'user' ? 'bg-[--color-brand-purple] text-black rounded-tr-none' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm'}`}>
                                             {msg.text}
                                         </div>
                                         <span className="text-[10px] text-gray-400 mt-1 px-1">{msg.time}</span>
@@ -262,7 +262,7 @@ const ProfessionalProfile = () => {
                                     placeholder="Type your message..." 
                                     className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[--color-brand-purple]/50 transition-all"
                                 />
-                                <button type="submit" disabled={!messageInput.trim()} className="bg-[--color-brand-purple] text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-[--color-brand-purple-dark] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                                <button type="submit" disabled={!messageInput.trim()} className="bg-[--color-brand-purple] text-black w-12 h-12 rounded-full flex items-center justify-center hover:bg-[--color-brand-purple-dark] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                                     <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                                 </button>
                             </form>

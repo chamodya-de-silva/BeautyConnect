@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const RegisterBeautician = () => {
     return (
-        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-pink] selection:text-white flex items-center justify-center relative py-12">
+        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-pink] selection:text-black flex items-center justify-center relative py-12">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[--color-brand-pink] mix-blend-multiply filter blur-[100px] opacity-20"></div>
                 <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[--color-brand-purple] mix-blend-multiply filter blur-[120px] opacity-20"></div>
@@ -72,7 +72,7 @@ const RegisterBeautician = () => {
 
                     <button
                         type="button"
-                        className="w-full bg-[--color-brand-pink] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-pink]/20 transition-all transform hover:-translate-y-0.5 mt-6"
+                        className="w-full bg-[--color-brand-pink] text-black py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:shadow-[--color-brand-pink]/20 transition-all transform hover:-translate-y-0.5 mt-6"
                     >
                         Register as Beautician
                     </button>

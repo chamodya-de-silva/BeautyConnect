@@ -95,13 +95,13 @@ const DiscoverSalons = () => {
                     <div className="mt-8 flex justify-center gap-4">
                         <button 
                             onClick={() => setViewMode('list')}
-                            className={`px-6 py-2 rounded-full font-bold transition-all ${viewMode === 'list' ? 'bg-[--color-brand-purple] text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:border-[--color-brand-purple]'}`}
+                            className={`px-6 py-2 rounded-full font-bold transition-all ${viewMode === 'list' ? 'bg-[--color-brand-purple] text-black shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:border-[--color-brand-purple]'}`}
                         >
                             📋 List View
                         </button>
                         <button 
                             onClick={() => setViewMode('map')}
-                            className={`px-6 py-2 rounded-full font-bold transition-all ${viewMode === 'map' ? 'bg-[--color-brand-purple] text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:border-[--color-brand-purple]'}`}
+                            className={`px-6 py-2 rounded-full font-bold transition-all ${viewMode === 'map' ? 'bg-[--color-brand-purple] text-black shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:border-[--color-brand-purple]'}`}
                         >
                             🗺️ Map View
                         </button>
@@ -188,7 +188,7 @@ const DiscoverSalons = () => {
                                                 ⭐ {prof.rating} <span className="text-gray-500 font-normal ml-1">({prof.reviews})</span>
                                             </div>
                                             <div className="absolute bottom-4 left-4">
-                                                <span className="bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium uppercase tracking-wider">
+                                                <span className="bg-black/60 backdrop-blur-md text-black px-3 py-1 rounded-lg text-xs font-medium uppercase tracking-wider">
                                                     {prof.role === 'salon_owner' ? 'Salon' : 'Freelancer'}
                                                 </span>
                                             </div>
@@ -215,7 +215,7 @@ const DiscoverSalons = () => {
                                                     <span className="text-xs text-gray-500">Starting from</span>
                                                     <span className="font-bold text-gray-900">{prof.priceRange || 'Contact for price'}</span>
                                                 </div>
-                                                <button onClick={() => navigate(`/booking?salon=${encodeURIComponent(prof.name)}`)} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                                                <button onClick={() => navigate(`/booking?salon=${encodeURIComponent(prof.name)}`)} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black px-6 py-2.5 rounded-xl text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
                                                     Book Now
                                                 </button>
                                             </div>

@@ -36,17 +36,17 @@ const ForProfessionals = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
                     <div className="text-center">
-                        <div className="w-20 h-20 bg-[--color-brand-purple] rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-3xl">📅</div>
+                        <div className="w-20 h-20 bg-[--color-brand-purple] rounded-2xl flex items-center justify-center mx-auto mb-6 text-black text-3xl">📅</div>
                         <h3 className="text-2xl font-bold mb-4">Easy Scheduling</h3>
                         <p className="text-gray-600 font-light">Take bookings 24/7 without answering a single call. Let our system handle your calendar.</p>
                     </div>
                     <div className="text-center">
-                        <div className="w-20 h-20 bg-[--color-brand-pink] rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-3xl">📈</div>
+                        <div className="w-20 h-20 bg-[--color-brand-pink] rounded-2xl flex items-center justify-center mx-auto mb-6 text-black text-3xl">📈</div>
                         <h3 className="text-2xl font-bold mb-4">Business Insights</h3>
                         <p className="text-gray-600 font-light">Track your earnings, popular services, and client feedback with our intuitive dashboard.</p>
                     </div>
                     <div className="text-center">
-                        <div className="w-20 h-20 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-3xl">💰</div>
+                        <div className="w-20 h-20 bg-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6 text-black text-3xl">💰</div>
                         <h3 className="text-2xl font-bold mb-4">Secure Payments</h3>
                         <p className="text-gray-600 font-light">Get paid directly and securely. No more chasing clients for payments.</p>
                     </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const RegisterSalonOwner = () => {
     return (
-        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-gray-900 selection:text-white flex items-center justify-center relative py-12">
+        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-gray-200 selection:text-black flex items-center justify-center relative py-12">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-gray-200 mix-blend-multiply filter blur-[100px] opacity-20"></div>
                 <div className="absolute bottom-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-gray-300 mix-blend-multiply filter blur-[120px] opacity-20"></div>
@@ -16,7 +16,7 @@ const RegisterSalonOwner = () => {
                             Beauty<span className="text-[#F880A8]">Connect</span>
                         </span>
                     </Link>
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-gray-900/10 text-gray-900 text-xs font-bold uppercase tracking-wider mb-4">
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-gray-200/10 text-gray-900 text-xs font-bold uppercase tracking-wider mb-4">
                         Salon Owner Registration
                     </div>
                     <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Business Account</h2>
@@ -71,7 +71,7 @@ const RegisterSalonOwner = () => {
 
                     <button
                         type="button"
-                        className="w-full bg-gray-900 text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:shadow-gray-900/20 transition-all transform hover:-translate-y-0.5 mt-6"
+                        className="w-full bg-gray-200 text-black py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:shadow-gray-900/20 transition-all transform hover:-translate-y-0.5 mt-6"
                     >
                         Register as Salon Owner
                     </button>

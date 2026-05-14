@@ -33,7 +33,7 @@ const ClientFavorites = () => {
                                 <p className="text-gray-500 text-sm mb-4">Colombo {i}, Sri Lanka</p>
                                 <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
                                     <span className="text-sm font-bold text-gray-900 bg-gray-100 px-3 py-1 rounded-full">⭐ 4.{9 - (i % 3)}</span>
-                                    <button onClick={() => navigate(`/booking?salon=${encodeURIComponent(i % 2 === 0 ? 'Luxe Nail Spa' : 'Glow Up Studio')}`)} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">Book Now</button>
+                                    <button onClick={() => navigate(`/booking?salon=${encodeURIComponent(i % 2 === 0 ? 'Luxe Nail Spa' : 'Glow Up Studio')}`)} className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black px-5 py-2.5 rounded-xl text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">Book Now</button>
                                 </div>
                             </div>
                         </div>

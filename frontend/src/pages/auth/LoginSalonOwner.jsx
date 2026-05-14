@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const LoginSalonOwner = () => {
     const navigate = useNavigate();
     return (
-        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-gray-900 selection:text-white flex items-center justify-center relative">
+        <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-gray-200 selection:text-black flex items-center justify-center relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-gray-200 mix-blend-multiply filter blur-[100px] opacity-40 animate-blob"></div>
                 <div className="absolute bottom-[-20%] left-[20%] w-[60%] h-[50%] rounded-full bg-gray-300 mix-blend-multiply filter blur-[100px] opacity-50 animate-blob animation-delay-4000"></div>
@@ -17,7 +17,7 @@ const LoginSalonOwner = () => {
                             Beauty<span className="text-[#F880A8]">Connect</span>
                         </span>
                     </Link>
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-gray-900/10 text-gray-900 text-xs font-bold uppercase tracking-wider mb-4">
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-gray-200/10 text-gray-900 text-xs font-bold uppercase tracking-wider mb-4">
                         Salon Management
                     </div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Business Portal</h2>
@@ -60,7 +60,7 @@ const LoginSalonOwner = () => {
                     <button
                         type="button"
                         onClick={() => navigate('/dashboard/salon')}
-                        className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-gray-900/20 transition-all duration-300 transform hover:-translate-y-0.5"
+                        className="w-full bg-gray-200 text-black py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-gray-900/20 transition-all duration-300 transform hover:-translate-y-0.5"
                     >
                         Sign In to Dashboard
                     </button>

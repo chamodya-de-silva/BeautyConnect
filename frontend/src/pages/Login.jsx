@@ -29,7 +29,7 @@ const Login = () => {
       description: 'I want to manage my salon and staff',
       icon: '🏛️',
       path: '/login/salon',
-      color: 'bg-gray-900',
+      color: 'bg-gray-200',
       hoverColor: 'hover:shadow-gray-900/20'
     }
   ];

@@ -19,14 +19,14 @@ const ClientRewards = () => {
                     <h1 className="text-3xl font-bold text-gray-900 font-serif">Beauty Rewards</h1>
                 </div>
 
-                <div className="bg-gradient-to-br from-[--color-brand-purple] to-[#e88aa8] p-10 rounded-[3rem] text-white shadow-xl relative overflow-hidden mb-12">
+                <div className="bg-gradient-to-br from-[--color-brand-purple] to-[#e88aa8] p-10 rounded-[3rem] text-black shadow-xl relative overflow-hidden mb-12">
                     <div className="absolute top-[-20%] right-[-10%] w-64 h-64 rounded-full bg-white opacity-10 blur-3xl"></div>
                     <div className="relative z-10 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-6">
                         <div>
                             <h2 className="text-2xl font-bold mb-2">Current Balance</h2>
                             <div className="flex items-baseline justify-center sm:justify-start gap-2">
                                 <span className="text-6xl font-extrabold font-serif">450</span>
-                                <span className="text-xl text-white/80">Points</span>
+                                <span className="text-xl text-black/80">Points</span>
                             </div>
                         </div>
                         <div className="w-full sm:w-1/2">
@@ -37,7 +37,7 @@ const ClientRewards = () => {
                             <div className="w-full bg-black/20 rounded-full h-3 mb-2">
                                 <div className="bg-white h-3 rounded-full" style={{ width: '90%' }}></div>
                             </div>
-                            <p className="text-xs text-white/80">50 more points to unlock Gold Tier benefits!</p>
+                            <p className="text-xs text-black/80">50 more points to unlock Gold Tier benefits!</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const ClientRewards = () => {
                             <h4 className="font-bold text-lg text-gray-900">10% Off Next Booking</h4>
                             <p className="text-sm text-gray-500">Any service over LKR 5000</p>
                         </div>
-                        <button className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                        <button className="bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
                             Redeem (100 Pts)
                         </button>
                     </div>

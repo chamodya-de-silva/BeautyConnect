@@ -130,7 +130,7 @@ const ClientSettings = () => {
                                     className="w-full h-full object-cover group-hover:opacity-75 transition-opacity"
                                 />
                                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span className="text-white text-sm font-bold">Change</span>
+                                    <span className="text-black text-sm font-bold">Change</span>
                                 </div>
                             </div>
                             <input 
@@ -173,7 +173,7 @@ const ClientSettings = () => {
                         </div>
 
                         <div className="pt-6">
-                            <button type="submit" disabled={saving} className="w-full bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-white py-4 rounded-2xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all disabled:opacity-70">
+                            <button type="submit" disabled={saving} className="w-full bg-gradient-to-r from-[#9F5AD5] to-[#F880A8] text-black py-4 rounded-2xl font-bold shadow-lg shadow-[#9F5AD5]/30 hover:shadow-xl hover:shadow-[#9F5AD5]/40 hover:-translate-y-0.5 transition-all disabled:opacity-70">
                                 {saving ? 'Saving...' : 'Save Changes'}
                             </button>
                         </div>

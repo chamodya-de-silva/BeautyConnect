@@ -4,10 +4,10 @@
 @theme {
   --font-sans: 'Outfit', sans-serif;
   --font-serif: 'Playfair Display', serif;
-  --color-brand-purple: #9F5AD5;
-  --color-brand-purple-dark: #8b46c2;
-  --color-brand-pink: #F1D0DB;
-  --color-brand-pink-dark: #d8aabf;
+  --color-brand-purple: #E6D0F5;
+  --color-brand-purple-dark: #D4B3E8;
+  --color-brand-pink: #FCE8F0;
+  --color-brand-pink-dark: #F3CEDB;
 }
 
 body {
@@ -16,6 +16,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
+}
+
+/* Force all text-white and button texts to black */
+.text-white {
+  color: #000000 !important;
+}
+button {
+  color: #000000 !important;
 }
 
 /* Custom Utilities for Glassmorphism & Animations */

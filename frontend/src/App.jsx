@@ -28,7 +28,7 @@ import ClientRewards from './pages/dashboards/ClientRewards';
 
 function Home() {
   return (
-    <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-purple] selection:text-white">
+    <div className="min-h-screen bg-[#fafafa] overflow-hidden selection:bg-[--color-brand-purple] selection:text-black">
       {/* Dynamic Background Blurs */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[--color-brand-pink] mix-blend-multiply filter blur-[100px] opacity-40 animate-blob"></div>
@@ -126,14 +126,14 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="group rounded-[2rem] bg-gray-50 border border-gray-100 p-8 hover:bg-[--color-brand-purple] hover:text-white transition-all duration-300">
+            <div className="group rounded-[2rem] bg-gray-50 border border-gray-100 p-8 hover:bg-[--color-brand-purple] hover:text-black transition-all duration-300">
               <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 text-[--color-brand-purple-dark] group-hover:text-[--color-brand-purple]">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
               <h4 className="text-2xl font-bold mb-3">Smart Booking</h4>
-              <p className="text-gray-500 group-hover:text-white/90 leading-relaxed font-light">Eliminate manual calls. See real-time availability and confirm your appointments instantly to avoid double bookings.</p>
+              <p className="text-gray-500 group-hover:text-black/90 leading-relaxed font-light">Eliminate manual calls. See real-time availability and confirm your appointments instantly to avoid double bookings.</p>
             </div>
 
             {/* Feature 2 */}
@@ -148,7 +148,7 @@ function Home() {
             </div>
 
             {/* Feature 3 */}
-            <div className="group rounded-[2rem] bg-gray-50 border border-gray-100 p-8 hover:bg-gray-900 hover:text-white transition-all duration-300">
+            <div className="group rounded-[2rem] bg-gray-50 border border-gray-100 p-8 hover:bg-gray-200 hover:text-black transition-all duration-300">
               <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 text-gray-800">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
